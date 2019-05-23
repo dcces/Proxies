@@ -26,7 +26,7 @@ namespace Proxies.Utils
                 var itemDatas = item.ChildNodes.Nodes().ToList();
                 string ip;
                 int port;
-                string address;
+                string address = string.Empty;
                 string state;
                 string type;
                 string timeout;

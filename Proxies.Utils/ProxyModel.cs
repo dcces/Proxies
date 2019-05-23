@@ -34,5 +34,18 @@ namespace Proxies.Utils
 
         public string TimeOut { get; set; }
 
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            var type = this.GetType();
+            foreach (var property in type.GetProperties())
+            {
+                sb.AppendLine($"{property.Name}={property.GetValue(this)}");
+            }
+            sb.AppendLine("---------------------------------------------");
+            return sb.ToString();
+        }
+
     }
 }
