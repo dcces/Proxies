@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28803.156
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proxies.ConsoleApp", "..\Proxies.ConsoleApp\Proxies.ConsoleApp.csproj", "{53F1C05A-B993-46DB-BE0A-CDFC890F25ED}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proxies.ConsoleApp", "Proxies.ConsoleApp\Proxies.ConsoleApp.csproj", "{53F1C05A-B993-46DB-BE0A-CDFC890F25ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proxies.Utils", "..\Proxies.Utils\Proxies.Utils.csproj", "{CF430E4E-FE80-4561-8228-01BACB3D7649}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proxies.Utils", "Proxies.Utils\Proxies.Utils.csproj", "{CF430E4E-FE80-4561-8228-01BACB3D7649}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
