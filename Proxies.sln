@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proxies.ConsoleApp", "Proxi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proxies.Utils", "Proxies.Utils\Proxies.Utils.csproj", "{CF430E4E-FE80-4561-8228-01BACB3D7649}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proxies.Api", "Proxies.Api\Proxies.Api.csproj", "{3A9B0C20-C11F-4BF4-A517-84FC0EA71EDE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{CF430E4E-FE80-4561-8228-01BACB3D7649}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF430E4E-FE80-4561-8228-01BACB3D7649}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF430E4E-FE80-4561-8228-01BACB3D7649}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A9B0C20-C11F-4BF4-A517-84FC0EA71EDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A9B0C20-C11F-4BF4-A517-84FC0EA71EDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A9B0C20-C11F-4BF4-A517-84FC0EA71EDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A9B0C20-C11F-4BF4-A517-84FC0EA71EDE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

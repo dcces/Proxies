@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -24,9 +25,9 @@ namespace Proxies.Utils.Proxy
             }
             return ls;
         }
-        public List<ProxyModel> GetLiveData(List<ProxyModel> ls)
+        public ConcurrentBag<ProxyModel> GetLiveData(List<ProxyModel> ls)
         {
-            List<ProxyModel> LiveDatas = new List<ProxyModel>();
+            ConcurrentBag<ProxyModel> LiveDatas = new ConcurrentBag<ProxyModel>();
             Task[] tasks = new Task[ls.Count];
             int index = 0;
             ls.ForEach(item =>
