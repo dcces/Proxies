@@ -17,10 +17,12 @@ namespace Proxies.Api
             CreateWebHostBuilder(args).Build().Run();
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args).UseConfiguration(new ConfigurationBuilder().SetBasePath(Environment.CurrentDirectory)
-            .AddJsonFile("appsettings.json")
-            .Build())
-                .UseStartup<Startup>();
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args)
+        {
+            return WebHost.CreateDefaultBuilder(args)
+            .UseConfiguration(new ConfigurationBuilder().SetBasePath(Environment.CurrentDirectory).AddJsonFile("appsettings.json").Build())
+            .UseKestrel()
+            .UseStartup<Startup>();
+        }
     }
 }

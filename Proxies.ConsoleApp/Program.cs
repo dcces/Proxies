@@ -19,6 +19,9 @@ namespace Proxies.ConsoleApp
     {
         static void Main(string[] args)
         {
+            var name = typeof(ProxyService).GetTypeInfo().Assembly.GetName().Name;
+
+
             ServicePointManager.DefaultConnectionLimit = 200;
 
             Stopwatch stopwatch = new Stopwatch();

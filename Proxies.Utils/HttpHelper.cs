@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -38,6 +39,11 @@ namespace Proxies.Utils
             }
         }
 
+        //[DllImport("ZT_ID.dll", CallingConvention = CallingConvention,en)]
+        //public static void aa([MarshalAs(UnmanagedType.VBByRefStr)]ref string CardInfo)
+        //{
+
+        //}
         public static bool ProxyCheck(ref ProxyModel model)
         {
             try

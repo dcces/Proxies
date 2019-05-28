@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Proxies.Utils
@@ -16,6 +17,7 @@ namespace Proxies.Utils
             for (int i = 0; i < 20; i++)
             {
                 res += HttpHelper.Get($"http://www.89ip.cn/index_{i}.html");
+                Thread.Sleep(200);
             }
             return res;
         }

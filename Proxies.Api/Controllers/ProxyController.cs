@@ -15,16 +15,16 @@ namespace Proxies.Api.Controllers
     {
         // GET api/values
         [HttpGet]
-        public ActionResult<ConcurrentBag<ProxyModel>> Get()
+        public ActionResult<object> Get()
         {
-            return RefreshJob.Cache;
+            return new { time = DateTime.Now, Data = RefreshJob.Cache };
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {
-            return "value";
+              return Environment.CurrentDirectory.ToString();
         }
 
         // POST api/values

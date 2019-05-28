@@ -16,12 +16,12 @@ namespace Proxies.Utils
             string str = HttpHelper.Get("https://www.kuaidaili.com/free/inha/1/");
             Thread.Sleep(2000);
             str += HttpHelper.Get("https://www.kuaidaili.com/free/inha/2/");
-            Thread.Sleep(2000);
+            Thread.Sleep(2300);
             str += HttpHelper.Get("https://www.kuaidaili.com/free/inha/3/");
             //透明
-            Thread.Sleep(2000);
+            Thread.Sleep(2050);
             str += HttpHelper.Get("https://www.kuaidaili.com/free/intr/");
-            Thread.Sleep(2000);
+            Thread.Sleep(2400);
             str += HttpHelper.Get("https://www.kuaidaili.com/free/intr/2/");
             Thread.Sleep(2000);
             str += HttpHelper.Get("https://www.kuaidaili.com/free/intr/3/");

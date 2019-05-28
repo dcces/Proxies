@@ -7,6 +7,9 @@ using System.Collections.Concurrent;
 using Proxies.Utils;
 using Proxies.Utils.Proxy;
 using System.Threading;
+using System.IO;
+using Newtonsoft.Json;
+using System.Diagnostics;
 
 namespace Proxies.Api.Jobs
 {
@@ -14,8 +17,9 @@ namespace Proxies.Api.Jobs
     {
         public static ConcurrentBag<ProxyModel> Cache = new ConcurrentBag<ProxyModel>();
         public static int count = 0;
-        [Invoke(Begin = "2019-5-23 14:00:00", Interval = 1000 * 60 * 10)]
         public bool lockObject = false;
+        [Invoke(Interval = 1000 * 60 * 30, Begin = "2019-05-27 17:07")]
+
         public void Collect(ProxyService proxyService)
         {
             if (!lockObject)
@@ -23,9 +27,12 @@ namespace Proxies.Api.Jobs
                 lockObject = true;
                 var RemoteData = proxyService.GetListByRemote();
                 Cache = proxyService.GetLiveData(RemoteData);
+                File.AppendAllText(Environment.CurrentDirectory + "cache.json", JsonConvert.SerializeObject(Cache));
                 lockObject = false;
+
             }
 
+            File.WriteAllText(Environment.CurrentDirectory + "log.txt", "4\r\n");
         }
     }
 }
