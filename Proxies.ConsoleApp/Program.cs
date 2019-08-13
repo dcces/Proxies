@@ -17,10 +17,12 @@ namespace Proxies.ConsoleApp
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task /*void*/ Main(string[] args)
         {
-            var name = typeof(ProxyService).GetTypeInfo().Assembly.GetName().Name;
 
+
+            LogManager log = new LogManager();
+            log.Info("123");
 
             ServicePointManager.DefaultConnectionLimit = 200;
 

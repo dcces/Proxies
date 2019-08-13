@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LogManager.cs" />
     <Compile Include="Proxy\ProxyService.cs" />
     <Compile Include="Proxy\Proxy_89ip.cs" />
     <Compile Include="Proxy\Proxy_kuai.cs" />

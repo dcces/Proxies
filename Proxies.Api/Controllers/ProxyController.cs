@@ -17,14 +17,14 @@ namespace Proxies.Api.Controllers
         [HttpGet]
         public ActionResult<object> Get()
         {
-            return new { time = DateTime.Now, Data = RefreshJob.Cache };
+            return new { time = RefreshJob.HandleTime, TotalCount = RefreshJob.TotalCount, ValidCount = RefreshJob.ValidCount, Data = RefreshJob.Cache };
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {
-              return Environment.CurrentDirectory.ToString();
+            return Environment.CurrentDirectory.ToString();
         }
 
         // POST api/values

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -13,7 +14,8 @@ namespace Proxies.Utils
         public string GetHtml()
         {
             //return HttpHelper.Get("https://www.kuaidaili.com/free/inha/2/");
-            string str = HttpHelper.Get("https://www.kuaidaili.com/free/inha/1/");
+            string str = string.Empty;
+            HttpHelper.Get("https://www.kuaidaili.com/free/inha/1/");
             Thread.Sleep(2000);
             str += HttpHelper.Get("https://www.kuaidaili.com/free/inha/2/");
             Thread.Sleep(2300);

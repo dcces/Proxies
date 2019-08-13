@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Proxies.Utils.Proxy
@@ -25,6 +26,11 @@ namespace Proxies.Utils.Proxy
             }
             return ls;
         }
+        /// <summary>
+        /// 获得能用的ip
+        /// </summary>
+        /// <param name="ls"></param>
+        /// <returns></returns>
         public ConcurrentBag<ProxyModel> GetLiveData(List<ProxyModel> ls)
         {
             ConcurrentBag<ProxyModel> LiveDatas = new ConcurrentBag<ProxyModel>();
@@ -32,12 +38,27 @@ namespace Proxies.Utils.Proxy
             int index = 0;
             ls.ForEach(item =>
            {
-               tasks[index] = new Task(() =>
-              {
-                  if (HttpHelper.ProxyCheck(ref item))
-                      LiveDatas.Add(item);
-              });
-               tasks[index++].Start();
+               //if (index != 0)
+               //{
+               //    tasks[index++] = Task.Run(() => { });
+               //    return;
+               //}
+               tasks[index++] = Task.Run(() =>
+             {
+                 LogManager log = new LogManager();
+                 try
+                 {
+                     if (HttpHelper.ProxyCheck(ref item))
+                     {
+                         LiveDatas.Add(item);
+                     }
+
+                 }
+                 catch (Exception e)
+                 {
+                     log.Info($"{e.Message}{Environment.NewLine}{e}");
+                 }
+             });
 
            });
             Task.WaitAll(tasks.ToArray());
