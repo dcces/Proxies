@@ -34,6 +34,8 @@ namespace Proxies.Utils
 
         public string TimeOut { get; set; }
 
+        public bool Usable { get; set; } = false;
+
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();

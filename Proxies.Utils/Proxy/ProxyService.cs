@@ -14,15 +14,25 @@ namespace Proxies.Utils.Proxy
         public List<ProxyModel> GetListByRemote()
         {
             List<ProxyModel> ls = new List<ProxyModel>();
-            var assembly = Assembly.GetExecutingAssembly();
-            var types = assembly.GetExportedTypes();
-            foreach (var type in types)
+            try
             {
-                if (type.Name.StartsWith("Proxy_"))
+                var assembly = Assembly.GetExecutingAssembly();
+                var types = assembly.GetExportedTypes();
+                for (int i = 0; i < types.Length; i++)
+                //foreach (var type in types)
                 {
-                    var obj = Activator.CreateInstance(type) as IProxy;
-                    ls.AddRange(obj.Parse(obj.GetHtml()));
+                    var type = types[i];
+                    if (type.Name.StartsWith("Proxy_"))
+                    {
+                        var obj = Activator.CreateInstance(type) as IProxy;
+                        ls.AddRange(obj.Parse(obj.GetHtml()));
+                    }
                 }
+            }
+            catch (Exception e)
+            {
+                LogManager log = new LogManager();
+                log.Info($"获取IP出错:{e.Message}{Environment.NewLine}{e.ToString()}{Environment.NewLine}");
             }
             return ls;
         }
@@ -33,34 +43,32 @@ namespace Proxies.Utils.Proxy
         /// <returns></returns>
         public ConcurrentBag<ProxyModel> GetLiveData(List<ProxyModel> ls)
         {
+            //ls = new List<ProxyModel>();
+            //ls.Add(new ProxyModel() { Ip = "182.92.233.137", Port = 8118, Type = "HTTP" });
             ConcurrentBag<ProxyModel> LiveDatas = new ConcurrentBag<ProxyModel>();
             Task[] tasks = new Task[ls.Count];
             int index = 0;
-            ls.ForEach(item =>
-           {
-               //if (index != 0)
-               //{
-               //    tasks[index++] = Task.Run(() => { });
-               //    return;
-               //}
-               tasks[index++] = Task.Run(() =>
-             {
-                 LogManager log = new LogManager();
-                 try
-                 {
-                     if (HttpHelper.ProxyCheck(ref item))
-                     {
-                         LiveDatas.Add(item);
-                     }
+            for (int i = 0; i < ls.Count; i++)
+            {
+                var item = ls[i];
+                tasks[index++] = Task.Run(async () =>
+                {
+                    LogManager log = new LogManager();
+                    try
+                    {
+                        var m = await HttpHelper.ProxyCheckAsync(item);
 
-                 }
-                 catch (Exception e)
-                 {
-                     log.Info($"{e.Message}{Environment.NewLine}{e}");
-                 }
-             });
-
-           });
+                        if (m.Usable)
+                        {
+                            LiveDatas.Add(item);
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        log.Info($"{e.Message}{Environment.NewLine}");
+                    }
+                });
+            }
             Task.WaitAll(tasks.ToArray());
             return LiveDatas;
         }

@@ -11,6 +11,7 @@ namespace Proxies.Utils
     {
         public string RootPath = "Log";
         private static string PARTITION = "\\";
+        private readonly static object objHelper = new object();
         static LogManager()
         {
             if (Environment.OSVersion.Platform == PlatformID.Unix)
@@ -24,9 +25,12 @@ namespace Proxies.Utils
         }
         public void Write(string msg)
         {
-            var file = getFileName();
-            //File.AppendAllLines(file, new List<string>() { msg }, Encoding.UTF8);
-            File.AppendAllText(file, msg, Encoding.UTF8);
+            lock (objHelper)
+            {
+                var file = getFileName();
+                //File.AppendAllLines(file, new List<string>() { msg }, Encoding.UTF8);
+                File.AppendAllText(file, msg, Encoding.UTF8);
+            }
         }
 
         public string getFileName()
